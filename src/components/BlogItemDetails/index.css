@@ -17,15 +17,17 @@
 .author-details {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 80%;
 }
 .blog-details-title {
   color: #000000;
-  font-size: 35px;
+  font-size: 30px;
   font-family: 'Roboto';
+  width: 80%;
 }
-.blog-image {
+.author-pic {
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -44,4 +46,5 @@
   color: #2f4f4f;
   font-size: 17px;
   font-family: 'Roboto';
+  width: 80%;
 }
