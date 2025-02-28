@@ -1,1 +1,56 @@
 // Write your JS code here
+import {Component} from 'react'
+
+import './index.css'
+
+class BlogItemDetals extends Component {
+  state = {blogData: {}}
+
+  componentDidMount() {
+    this.getBlogItemData()
+  }
+
+  getBlogItemData = async () => {
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+
+    const response = await fetch(`https://apis.ccbp.in/blogs/${id}`)
+    const data = await response.json()
+
+    const updatedData = {
+      title: data.title,
+      imageUrl: data.image_url,
+      avatarUrl: data.avatar_url,
+      author: data.author,
+      content: data.content,
+      topic: data.topic,
+    }
+    this.setState({
+      blogData: updatedData,
+    })
+  }
+
+  renderBlogItemDetails = () => {
+    const {blogData} = this.state
+    const {title, imageUrl, avatarUrl, author, content, topic} = blogData
+
+    return (
+      <div className="blog-info">
+        <h1 className="blog-details-title">{title}</h1>
+        <div className="author-details">
+          <img src={avatarUrl} className="blog-image" />
+          <p className="details-author-name">{author}</p>
+        </div>
+        <img src={imageUrl} className="blog-image" />
+        <p className="blog-content">{content}</p>
+      </div>
+    )
+  }
+
+  render() {
+    return <div className="blog-container">{this.renderBlogItemDetails()}</div>
+  }
+}
+
+export default BlogItemDetals
