@@ -45,7 +45,7 @@ class BlogItemDetals extends Component {
           <img src={avatarUrl} className="author-pic" alt="author" />
           <p className="details-author-name">{author}</p>
         </div>
-        <img src={imageUrl} className="blog-image" />
+        <img src={imageUrl} className="blog-image" alt={title} />
         <p className="blog-content">{content}</p>
       </div>
     )
@@ -56,7 +56,9 @@ class BlogItemDetals extends Component {
     return (
       <div className="blog-container">
         {isLoading ? (
-          <Loader type="TailSpinner" color="#00BFBF" height={50} width={50} />
+          <div data-testid="loader">
+            <Loader type="TailSpinner" color="#00BFBF" height={50} width={50} />
+          </div>
         ) : (
           this.renderBlogItemDetails()
         )}
